@@ -60,8 +60,8 @@ $w=[w_0, w_1, w_2, ..., w_N]^T$ is a column vector that need to be optimized, $w
 
 $$y \approx \bar{x}w = \hat{y}$$
 - Loss function: 
-$$L(w) = \frac{1}{2}\sum_{i=1}^N(y_i - \bar{x_i}w)^2\\=\frac{1}{2}\ \| y-\bar{X}w \|_2^2 $$
-(check out norm in [Math](math.md))
+$$L(w) = \frac{1}{2}\sum_{i=1}^N(y_i - \bar{x_i}w)^2 =\frac{1}{2}\ \| y-\bar{X}w \|_2^2 $$
+(check out [norm](#norm) in Math)
 - $\frac{dL}{dw} = \bar{X}^T(\bar{X}w-y) = 0 \Leftrightarrow \bar{X}^T\bar{X}w = \bar{X}^Ty \triangleq b$
 
 - If $A = \bar{X}^T\bar{X}$ is invertible, $w = A^{-1}b$
@@ -71,6 +71,12 @@ $$L(w) = \frac{1}{2}\sum_{i=1}^N(y_i - \bar{x_i}w)^2\\=\frac{1}{2}\ \| y-\bar{X}
 
 - **Question:** What if $A = \bar{X}^T\bar{X}$ is not invertible ? 
     - [Pseudo inverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse)
+
+
+# Math
+Some math knowledge needed about Linear algebra, Probability, Optimization, Discrete math, ... necessary for understanding of machine learning.
+
+## Norm
 
 ## Reference 
 1. [Machine learning co ban](https://machinelearningcoban.com/2016/12/27/categories/)
