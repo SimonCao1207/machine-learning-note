@@ -13,7 +13,7 @@
 
 ## Algorithms group by similarity
 - **Regression algorithms:**
-    - Linear regression
+    - [Linear regression](#linear-regression)
     - Logistic regression
     - Stepwise regression
 
@@ -41,15 +41,36 @@
 - **Dimensionality reduction algorithms:** 
     - Principle component analysis (PCA)
     - Linear discriminant analysis (LDA)
-- **Ensemble algorithm: **
+- **Ensemble algorithm:**
     - Boosting 
     - Adaboost
     - Random forest
-- **Deep learning algorithms: **
+- **Deep learning algorithms:**
     - Perceptron
     - Softmax regression
-    - Multi-layer Perceptron
+    - Multi-layer Perceptron    
     - Back-propagation
+
+## Linear regression
+$y$ (real value of outcome) and $\hat{y}$ (prediction value of outcome) are scalars.
+
+$\bar{x} = [1, x_1, x_2, ..., x_N]$ is a row vector contains input information.
+
+$w=[w_0, w_1, w_2, ..., w_N]^T$ is a column vector that need to be optimized, $w_0$ is called bias.
+
+$$y \approx \bar{x}w = \hat{y}$$
+- Loss function: 
+$$L(w) = \frac{1}{2}\sum_{i=1}^N(y_i - \bar{x_i}w)^2\\=\frac{1}{2}\ \| y-\bar{X}w \|_2^2 $$
+(check out norm in [Math](math.md))
+- $\frac{dL}{dw} = \bar{X}^T(\bar{X}w-y) = 0 \Leftrightarrow \bar{X}^T\bar{X}w = \bar{X}^Ty \triangleq b$
+
+- If $A = \bar{X}^T\bar{X}$ is invertible, $w = A^{-1}b$
+
+- **Question:** Why don't we use absolute instead of square in loss function ?
+    - Square function has a well-defined derivative everywhere, meanwhile absolute function has a non-differentiable point at 0.
+
+- **Question:** What if $A = \bar{X}^T\bar{X}$ is not invertible ? 
+    - [Pseudo inverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse)
 
 ## Reference 
 1. [Machine learning co ban](https://machinelearningcoban.com/2016/12/27/categories/)
