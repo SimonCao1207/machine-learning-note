@@ -67,9 +67,8 @@ $$L(w) = \frac{1}{2}\sum_{i=1}^N(y_i - \bar{x_i}w)^2 =\frac{1}{2}\ \| y-\bar{X}w
 - $\frac{dL}{dw} = \bar{X}^T(\bar{X}w-y) = 0 \Leftrightarrow \bar{X}^T\bar{X}w = \bar{X}^Ty \triangleq b$
 
 - If $A = \bar{X}^T\bar{X}$ is invertible, $w = A^{-1}b$
-
-- **Question:** Why don't we use absolute instead of square in loss function ?
-    - Square function has a well-defined derivative everywhere, meanwhile absolute function has a non-differentiable point at 0.
+> **_Question:_**  Why don't we use absolute instead of square in loss function ?
+> - Square function has a well-defined derivative everywhere, meanwhile absolute function has a non-differentiable point at 0.
 
 - **Question:** What if $A = \bar{X}^T\bar{X}$ is not invertible ? 
     - [Pseudo inverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse)
@@ -77,7 +76,7 @@ $$L(w) = \frac{1}{2}\sum_{i=1}^N(y_i - \bar{x_i}w)^2 =\frac{1}{2}\ \| y-\bar{X}w
 ## Logistic regression
 - a process of modeling the probability of a discrete outcome given an input variable.  
 $$f(x) = \theta(w^Tx)$$
-where $\theta$ is [activation function](#activation-function).
+where $\theta$ is [activation function](#activation-function) that outputs a number between [0,1].
 - For training set $X = [x_1, x_2, ..., x_N] \in R^{d \times N}$ and $y=[y_1, y_2, y_3, ..., y_N]$, the objective is to find $w$ for $P(y|X;w)$ to maximize
 
 - This is maximum likelihood estimation problem with $P(y|X;w)$ as a likelihood function: 
@@ -90,10 +89,41 @@ $$P(y_i|x_i;w) = z_i^{y_i}(1-z_i)^{1-y_i}$$
 - Loss function (build from likelihood function): 
 $$J(w) = -log(P(y|X;w))$$
 $$=-\sum_{i=1}^N(y_ilog(z_i)+(1-y_i)log(1-z_i))$$
-- Derivative: 
-    $$\frac{dz}{dw} = (z_i-y_i)x_i$$
+- Derivative with regards to $w$: 
+    $$\frac{dz_i}{dw} = (z_i-y_i)x_i$$
+
+- Update formula following [SGD](#stochastic-gradient-descent):
+    $$w = w + \eta(z_i-y_i)x_i $$
 - Property: 
     - boundary created by logistic regression is a hyperplane $w^Tx$. Therefore, this model only works for data with 2 classes are almost linearly separable.
+
+## Gradient descent
+- Gradient points in the direction of the steepest increase in the loss
+
+$$\theta = \theta - \eta\nabla_{\theta}J(\theta)$$
+
+- **Key idea**: update the parameters in the opposite direction of the gradient (derivative) of the loss function with respect to those parameters. 
+
+> **_Question:_** :  What is gradient descent ? 
+> - Gradient descent is an optimization algorithm to minimize the loss function by updating the model's parameters 
+> - The learning rate is a hyperparameter that determines the size of the steps taken during the parameter updates.
+
+### Batch Gradient Descent
+- computes the gradient using the whole dataset
+
+### Stochastic Gradient Descent
+
+    
+- picks a random instance in the training set at every step and computes the gradients based only on that single instance. 
+    $$\theta = \theta - \eta\nabla_{\theta}J(\theta;x_i;y_i)$$
+    > **_Question:_** What is advantage and disadvantage of SGD ? 
+    > - Advantage: 
+        - faster since it has little data to manipulate at every iteration $\rightarrow$ make it possible to train on a huge training sets. 
+        - Due to its stochastic (i.e., random) nature, is good to escape from local optimai and has a better chance of finding the global minimum than Batch Gradient descent 
+    > - Disadvantage: randomness means that the algorithm can never settle at the minimum and continue to bounce around
+        - one solution is gradually reduce the learning rate.
+### Mini-batch Gradient Descent
+- number of picked instances > 1 (but still a lot fewer than $N$)
 
 # Math
 Some math knowledge needed about Linear algebra, Probability, Optimization, Discrete math, ... necessary for understanding of machine learning.
