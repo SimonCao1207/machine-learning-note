@@ -14,7 +14,7 @@
 ## Algorithms group by similarity
 - **Regression algorithms:**
     - [Linear regression](#linear-regression)
-    - Logistic regression
+    - [Logistic regression](#logistic-regression)
     - Stepwise regression
 
 - **Classification algorithm:** 
@@ -81,7 +81,8 @@ where $\theta$ is [activation function](#activation-function).
 - For training set $X = [x_1, x_2, ..., x_N] \in R^{d \times N}$ and $y=[y_1, y_2, y_3, ..., y_N]$, the objective is to find $w$ for $P(y|X;w)$ to maximize
 
 - This is maximum likelihood estimation problem with $P(y|X;w)$ as a likelihood function: 
-$$w=\underset{w}{\operatorname{argmax}}(P(y|X;w))$$
+
+$$w=\underset{w}{argmax}(P(y|X;w))$$
 
 - Let $z_i=\theta(w^Tx_i)$ and assume from now for simplicity (binary classification) $y_i\in\set{0,1}$ then:
 $$P(y_i|x_i;w) = z_i^{y_i}(1-z_i)^{1-y_i}$$
@@ -91,7 +92,8 @@ $$J(w) = -log(P(y|X;w))$$
 $$=-\sum_{i=1}^N(y_ilog(z_i)+(1-y_i)log(1-z_i))$$
 - Derivative: 
     $$\frac{dz}{dw} = (z_i-y_i)x_i$$
-- Nice property: boundary created by logistic regression is a hyperplane $w^Tx$
+- Property: 
+    - boundary created by logistic regression is a hyperplane $w^Tx$. Therefore, this model only works for data with 2 classes are almost linearly separable.
 
 # Math
 Some math knowledge needed about Linear algebra, Probability, Optimization, Discrete math, ... necessary for understanding of machine learning.
