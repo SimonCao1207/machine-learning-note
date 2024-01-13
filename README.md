@@ -67,11 +67,11 @@ $$L(w) = \frac{1}{2}\sum_{i=1}^N(y_i - \bar{x_i}w)^2 =\frac{1}{2}\ \| y-\bar{X}w
 - $\frac{dL}{dw} = \bar{X}^T(\bar{X}w-y) = 0 \Leftrightarrow \bar{X}^T\bar{X}w = \bar{X}^Ty \triangleq b$
 
 - If $A = \bar{X}^T\bar{X}$ is invertible, $w = A^{-1}b$
-> **_Question:_**  Why don't we use absolute instead of square in loss function ?
+> **_Question_** : Why don't we use absolute instead of square in loss function ?
 > - Square function has a well-defined derivative everywhere, meanwhile absolute function has a non-differentiable point at 0.
 
-- **Question:** What if $A = \bar{X}^T\bar{X}$ is not invertible ? 
-    - [Pseudo inverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse)
+> **_Question_** :  What if $A = \bar{X}^T\bar{X}$ is not invertible ? 
+> - [Pseudo inverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse)
 
 ## Logistic regression
 - a process of modeling the probability of a discrete outcome given an input variable.  
@@ -104,7 +104,7 @@ $$\theta = \theta - \eta\nabla_{\theta}J(\theta)$$
 
 - **Key idea**: update the parameters in the opposite direction of the gradient (derivative) of the loss function with respect to those parameters. 
 
-> **_Question:_** :  What is gradient descent ? 
+> **_Question_** :  What is gradient descent ? 
 > - Gradient descent is an optimization algorithm to minimize the loss function by updating the model's parameters 
 > - The learning rate is a hyperparameter that determines the size of the steps taken during the parameter updates.
 
@@ -112,11 +112,10 @@ $$\theta = \theta - \eta\nabla_{\theta}J(\theta)$$
 - computes the gradient using the whole dataset
 
 ### Stochastic Gradient Descent
-
     
 - picks a random instance in the training set at every step and computes the gradients based only on that single instance. 
     $$\theta = \theta - \eta\nabla_{\theta}J(\theta;x_i;y_i)$$
-    > **_Question:_** What is advantage and disadvantage of SGD ? 
+    > **_Question_** : What is advantage and disadvantage of SGD ? 
     > - Advantage: 
         - faster since it has little data to manipulate at every iteration $\rightarrow$ make it possible to train on a huge training sets. 
         - Due to its stochastic (i.e., random) nature, is good to escape from local optimai and has a better chance of finding the global minimum than Batch Gradient descent 
@@ -124,6 +123,20 @@ $$\theta = \theta - \eta\nabla_{\theta}J(\theta)$$
         - one solution is gradually reduce the learning rate.
 ### Mini-batch Gradient Descent
 - number of picked instances > 1 (but still a lot fewer than $N$)
+
+### Stopping Criteria
+> **_Question_** : When do we know the algorithm is converged and should stop ? 
+- In practice, there are a few number of ways.
+    - predetermined maximum number of iterations. $\rightarrow$ can stop too soon
+    - stop when the norm of the gradient is below some threshold
+    $$\nabla_{\theta}J(w) < \epsilon$$
+    - stop when the improvement drops below a threshold $\rightarrow$ might stuck in "saddle points"
+
+### Gradient descent with momentum 
+- It cares about what previous gradients were: 
+    $$m \leftarrow \beta m + \eta\nabla_{\theta}J(\theta)$$
+    - to simulate some sort of friction mechanism and prevent the momentum from growing too large, the algorithm introduces a new hyperparameter $\beta$, called the momentum, which must be set between 0 (high friction) and 1(no friction). A typical momentum value is 0.9.
+    $$\theta \leftarrow \theta - m$$
 
 # Math
 Some math knowledge needed about Linear algebra, Probability, Optimization, Discrete math, ... necessary for understanding of machine learning.
@@ -142,6 +155,7 @@ Some math knowledge needed about Linear algebra, Probability, Optimization, Disc
 ## Reference 
 1. [Machine learning co ban](https://machinelearningcoban.com/2016/12/27/categories/)
 2. [A tour of ML algorithms](https://machinelearningmastery.com/a-tour-of-machine-learning-algorithms/)
+3. [Aurélien Géron - Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow_ Concepts, Tools, and Techniques to Build Intelligent Systems](https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/)
 
 
 
