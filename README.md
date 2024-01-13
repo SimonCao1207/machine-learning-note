@@ -59,6 +59,8 @@ $\bar{x} = [1, x_1, x_2, ..., x_N]$ is a row vector contains input information.
 $w=[w_0, w_1, w_2, ..., w_N]^T$ is a column vector that need to be optimized, $w_0$ is called bias.
 
 $$y \approx \bar{x}w = \hat{y}$$
+or 
+$$f(x) = w^Tx$$
 - Loss function: 
 $$L(w) = \frac{1}{2}\sum_{i=1}^N(y_i - \bar{x_i}w)^2 =\frac{1}{2}\ \| y-\bar{X}w \|_2^2 $$
 (check out [norm](#norm) in Math)
@@ -72,11 +74,38 @@ $$L(w) = \frac{1}{2}\sum_{i=1}^N(y_i - \bar{x_i}w)^2 =\frac{1}{2}\ \| y-\bar{X}w
 - **Question:** What if $A = \bar{X}^T\bar{X}$ is not invertible ? 
     - [Pseudo inverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse)
 
+## Logistic regression
+- a process of modeling the probability of a discrete outcome given an input variable.  
+$$f(x) = \theta(w^Tx)$$
+where $\theta$ is [activation function](#activation-function).
+- For training set $X = [x_1, x_2, ..., x_N] \in R^{d \times N}$ and $y=[y_1, y_2, y_3, ..., y_N]$, the objective is to find $w$ for $P(y|X;w)$ to maximize
+
+- This is maximum likelihood estimation problem with $P(y|X;w)$ as a likelihood function: 
+$$w=\underset{w}{\operatorname{argmax}}(P(y|X;w))$$
+
+- Let $z_i=\theta(w^Tx_i)$ and assume from now for simplicity (binary classification) $y_i\in\set{0,1}$ then:
+$$P(y_i|x_i;w) = z_i^{y_i}(1-z_i)^{1-y_i}$$
+
+- Loss function (build from likelihood function): 
+$$J(w) = -log(P(y|X;w))$$
+$$=-\sum_{i=1}^N(y_ilog(z_i)+(1-y_i)log(1-z_i))$$
+- Derivative: 
+    $$\frac{dz}{dw} = (z_i-y_i)x_i$$
+- Nice property: boundary created by logistic regression is a hyperplane $w^Tx$
 
 # Math
 Some math knowledge needed about Linear algebra, Probability, Optimization, Discrete math, ... necessary for understanding of machine learning.
 
 ## Norm
+
+## Activation function
+- Sigmoid: 
+    $$\sigma(x) = \frac{1}{e^{-x} +1}$$
+    - specially, $\sigma^{'}(x) = \sigma(x)(1-\sigma(x))$
+- Tanh:
+    $$\tanh(x) = \frac{e^x-e^{-x}}{e^x+e^{-x}}$$
+    - specially, $\tanh(x) = 2\sigma(2x)-1$
+
 
 ## Reference 
 1. [Machine learning co ban](https://machinelearningcoban.com/2016/12/27/categories/)
