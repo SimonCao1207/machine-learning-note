@@ -146,7 +146,8 @@ $$\theta = \theta - \eta\nabla_{\theta}J(\theta)$$
 
 Saddle points            | 
 :-------------------------:
-![saddle_point](img/saddle_point.png)
+<img src="img/saddle_point.png" width="400">
+
 ### Gradient descent with momentum 
 - It cares about what previous gradients were: 
     $$m \leftarrow \beta m + \eta\nabla_{\theta}J(\theta)$$
@@ -159,39 +160,39 @@ Some math knowledge needed about Linear algebra, Probability, Optimization, Disc
 ## Norm
 
 ## Activation function
-- **Sigmoid:** 
-    $$\sigma(x) = \frac{1}{e^{-x} +1}$$
-    - specially, $\sigma^{'}(x) = \sigma(x)(1-\sigma(x))$
+### Sigmoid
+$$\sigma(x) = \frac{1}{e^{-x} +1}$$
+- specially, $\sigma^{'}(x) = \sigma(x)(1-\sigma(x))$
 
-- **Tanh:**
-    $$\tanh(x) = \frac{e^x-e^{-x}}{e^x+e^{-x}}$$
-    - specially, $\tanh(x) = 2\sigma(2x)-1$
+### Tanh
+$$\tanh(x) = \frac{e^x-e^{-x}}{e^x+e^{-x}}$$
+- specially, $\tanh(x) = 2\sigma(2x)-1$
 
-- **Softmax:**
-    - for each input $x$, $a_i$ is the probability for $x$ to belong to class $i$: $a_i > 0$ and $\sum a_i = 1$
-    $$z_i = w_i^Tx$$
-    $$a_i = \frac{e^{z_i}}{\sum^{C}_{j=1} e^{z_j}}$$
+### Softmax 
+- for each input $x$, $a_i$ is the probability for $x$ to belong to class $i$: $a_i > 0$ and $\sum a_i = 1$
+$$z_i = w_i^Tx$$
+$$a_i = \frac{e^{z_i}}{\sum^{C}_{j=1} e^{z_j}}$$
 
-    - more stable version of softmax to prevent overflow when one of $z_i$ becomes to large.
-    $$a_i = \frac{e^{z_i-max(z_i)}}{\sum^{C}_{j=1} e^{z_j-max(z_i)}}$$
+- more stable version of softmax to prevent overflow when one of $z_i$ becomes to large.
+$$a_i = \frac{e^{z_i-max(z_i)}}{\sum^{C}_{j=1} e^{z_j-max(z_i)}}$$
 
 ![softmax](img/softmax_nn.png)
 
-- **Relu** : 
-    $$\sigma(x) = \frac{x+|x|}{2} = max(x, 0)$$
+### Relu
+$$\sigma(x) = \frac{x+|x|}{2} = max(x, 0)$$
 > **_Question_** : What are the advantages of _ReLU_ over _sigmoid_ function in deep neural networks?
 >    - Two additional major benefits of ReLUs are sparsity and a reduced likelihood of vanishing gradient.
 >    - When $x>0$, the gradient has a constant value. In contrast, the gradient of sigmoids becomes increasingly small as the absolute value of $x$ increases.
 >    - The constant gradient of ReLUs results in faster learning.
 >    - Sparsity arises when $x \leq 0$. Sigmoids on the other hand are always likely to generate some non-zero value resulting in dense representations.
 
-- **Leaky Relu** :
+### Leaky Relu
 
-    - It is a type of activation function based on a ReLU, but it has a small slope for negative values instead of a flat slope. The slope coefficient is determined before training, i.e. it is not learnt during training. 
+- It is a type of activation function based on a ReLU, but it has a small slope for negative values instead of a flat slope. The slope coefficient is determined before training, i.e. it is not learnt during training. 
 
-    Leaky ReLU            | 
-    :-------------------------:
-    <img src="img/leaky_relu.png" width="200">
+Leaky ReLU            | 
+:-------------------------:
+<img src="img/leaky_relu.png" width="200">
 
 
 
