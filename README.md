@@ -142,8 +142,8 @@ $$\theta = \theta - \eta\nabla_{\theta}J(\theta)$$
     $$\nabla_{\theta}J(w) < \epsilon$$
     - stop when the improvement drops below a threshold $\rightarrow$ might stuck in "_saddle points_"
 
-    ![saddle_point](img/saddle_point.png)
-    
+![saddle_point](img/saddle_point.png)
+
 ### Gradient descent with momentum 
 - It cares about what previous gradients were: 
     $$m \leftarrow \beta m + \eta\nabla_{\theta}J(\theta)$$
@@ -168,7 +168,9 @@ Some math knowledge needed about Linear algebra, Probability, Optimization, Disc
     - for each input $x$, $a_i$ is the probability for $x$ to belong to class $i$: $a_i > 0$ and $\sum a_i = 1$
     $$z_i = w_i^Tx$$
     $$a_i = \frac{e^{z_i}}{\sum^{C}_{j=1} e^{z_j}}$$
-    ![softmax](img/softmax_nn.png)
+
+![softmax](img/softmax_nn.png)
+
     - more stable version of softmax to prevent overflow when one of $z_i$ becomes to large.
     $$a_i = \frac{e^{z_i-max(z_i)}}{\sum^{C}_{j=1} e^{z_j-max(z_i)}}$$
 - **Relu** : 
