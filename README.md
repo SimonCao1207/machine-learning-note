@@ -92,7 +92,11 @@ $$J(w) = -log(P(y|X;w))$$
 $$=-\sum_{i=1}^N(y_ilog(z_i)+(1-y_i)log(1-z_i))$$
 - Derivative with regards to $w$: 
     $$\frac{dz_i}{dw} = (z_i-y_i)x_i$$
-
+> **_Question_** : Why use MSE for Linear regression and BCE for Logistic (not the other way around)?
+>    - Due to assumption mismatch (MSE assumes Gaussian prior, while logistic’s data from Bernoulli).
+>    - MSE leads to non-convex function, BCE leads to convex function. A convex loss function has only one global minimum and no local minima, making it easier to solve with a simpler optimization algorithm. However, a non-convex loss function has both local and global minima and requires an advanced optimization algorithm to find the global minimum.
+>    - MSE does not penalize misclassification enough (e.g, if truth is 1 and prediction is 0, then MSE is 1 while BCE is inf)
+> - Assumption of Probability Estimates: BCE loss assumes that the model's output represents probabilities. In classification problems, these probabilities can be interpreted as the likelihood of belonging to a particular class. In linear regression, the model's output does not represent probabilities, but rather the estimated continuous values of the dependent variable.
 - Update formula following [SGD](#stochastic-gradient-descent):
     $$w = w + \eta(z_i-y_i)x_i $$
 - Property: 
@@ -134,8 +138,8 @@ $$\theta = \theta - \eta\nabla_{\theta}J(\theta)$$
     - predetermined maximum number of iterations. $\rightarrow$ can stop too soon
     - stop when the norm of the gradient is below some threshold
     $$\nabla_{\theta}J(w) < \epsilon$$
-    - stop when the improvement drops below a threshold $\rightarrow$ might stuck in "saddle points"
-
+    - stop when the improvement drops below a threshold $\rightarrow$ might stuck in "_saddle points_"
+    ![saddle_point](img/saddle_point.png)
 ### Gradient descent with momentum 
 - It cares about what previous gradients were: 
     $$m \leftarrow \beta m + \eta\nabla_{\theta}J(\theta)$$
@@ -181,13 +185,28 @@ Some math knowledge needed about Linear algebra, Probability, Optimization, Disc
 - Cross entropy:
     - Cross entropy between two [discrete probability distributions](https://en.wikipedia.org/wiki/Probability_distribution#Discrete_probability_distribution) $p, q$ :
         $$H(p,q) = -\sum_{i=1}^{C} p_ilog(q_i)$$
-## Probability theory
+## Probability theory   
 ### Probability distribution
+#### Binomal distribution
+#### Bernoulli Distribution
+#### Uniform Distribution
+#### Normal or Gaussian Distribution
+#### Exponential Distribution
+#### Poisson Distribution
+
 ### KL-divergence
+
+# GPU
+- read this [timdettmers's blog](https://timdettmers.com/) 
+    
+    ![gpu](img/gpu1.png)
+    ![gpu](img/gpu2.png)
+
 ## Reference 
 1. [Machine learning co ban](https://machinelearningcoban.com/2016/12/27/categories/)
 2. [A tour of ML algorithms](https://machinelearningmastery.com/a-tour-of-machine-learning-algorithms/)
 3. [Aurélien Géron - Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow_ Concepts, Tools, and Techniques to Build Intelligent Systems](https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/)
+
 
 
 
