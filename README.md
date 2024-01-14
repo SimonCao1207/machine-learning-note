@@ -16,7 +16,6 @@
     - [Linear regression](#linear-regression)
     - [Logistic regression](#logistic-regression)
     - Stepwise regression
-
 - **Classification algorithm:** 
     - Linear classifier
     - Support vector machine (SVM)
@@ -47,7 +46,7 @@
     - Random forest
 - **Deep learning algorithms:**
     - Perceptron
-    - Softmax regression
+    - [Softmax regression](#softmax-regression)
     - Multi-layer Perceptron    
     - Back-propagation
 
@@ -74,16 +73,18 @@ $$L(w) = \frac{1}{2}\sum_{i=1}^N(y_i - \bar{x_i}w)^2 =\frac{1}{2}\ \| y-\bar{X}w
 > - [Pseudo inverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse)
 
 ## Logistic regression
+- assume from now $y_i\in\set{0,1}$ (binary classification).
 - a process of modeling the probability of a discrete outcome given an input variable.  
 $$f(x) = \theta(w^Tx)$$
 where $\theta$ is [activation function](#activation-function) that outputs a number between [0,1].
+![img](img/logistic_regression.png)
 - For training set $X = [x_1, x_2, ..., x_N] \in R^{d \times N}$ and $y=[y_1, y_2, y_3, ..., y_N]$, the objective is to find $w$ for $P(y|X;w)$ to maximize
 
 - This is maximum likelihood estimation problem with $P(y|X;w)$ as a likelihood function: 
 
 $$w=\underset{w}{argmax}(P(y|X;w))$$
 
-- Let $z_i=\theta(w^Tx_i)$ and assume from now for simplicity (binary classification) $y_i\in\set{0,1}$ then:
+- Let $z_i=\theta(w^Tx_i)$ then:
 $$P(y_i|x_i;w) = z_i^{y_i}(1-z_i)^{1-y_i}$$
 
 - Loss function (build from likelihood function): 
@@ -96,6 +97,9 @@ $$=-\sum_{i=1}^N(y_ilog(z_i)+(1-y_i)log(1-z_i))$$
     $$w = w + \eta(z_i-y_i)x_i $$
 - Property: 
     - boundary created by logistic regression is a hyperplane $w^Tx$. Therefore, this model only works for data with 2 classes are almost linearly separable.
+
+## Softmax regression
+- more general algorithm than logistic regression to deal with multi-class labels. 
 
 ## Gradient descent
 - Gradient points in the direction of the steepest increase in the loss
@@ -144,14 +148,29 @@ Some math knowledge needed about Linear algebra, Probability, Optimization, Disc
 ## Norm
 
 ## Activation function
-- Sigmoid: 
+- **Sigmoid:** 
     $$\sigma(x) = \frac{1}{e^{-x} +1}$$
     - specially, $\sigma^{'}(x) = \sigma(x)(1-\sigma(x))$
-- Tanh:
+
+- **Tanh:**
     $$\tanh(x) = \frac{e^x-e^{-x}}{e^x+e^{-x}}$$
     - specially, $\tanh(x) = 2\sigma(2x)-1$
 
+- **Softmax:**
+    - for each input $x$, $a_i$ is the probability for $x$ to belong to class $i$: $a_i > 0$ and $\sum a_i = 1$
+    $$z_i = w_i^Tx$$
+    $$a_i = \frac{e^{z_i}}{\sum^{C}_{j=1} e^{z_j}}$$
+    ![softmax](img/softmax_nn.png)
+    - more stable version of softmax to prevent overflow when one of $z_i$ becomes to large.
+    $$a_i = \frac{e^{z_i-max(z_i)}}{\sum^{C}_{j=1} e^{z_j-max(z_i)}}$$
 
+## Loss function
+- Cross entropy:
+    - Cross entropy between two [discrete probability distributions](https://en.wikipedia.org/wiki/Probability_distribution#Discrete_probability_distribution) $p, q$ :
+        $$H(p,q) = -\sum_{i=1}^{C} p_ilog(q_i)$$
+## Probability theory
+### Probability distribution
+### KL-divergence
 ## Reference 
 1. [Machine learning co ban](https://machinelearningcoban.com/2016/12/27/categories/)
 2. [A tour of ML algorithms](https://machinelearningmastery.com/a-tour-of-machine-learning-algorithms/)
