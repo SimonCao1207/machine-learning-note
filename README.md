@@ -142,8 +142,11 @@ $$\theta = \theta - \eta\nabla_{\theta}J(\theta)$$
     $$\nabla_{\theta}J(w) < \epsilon$$
     - stop when the improvement drops below a threshold $\rightarrow$ might stuck in "_saddle points_"
 
-![saddle_point](img/saddle_point.png)
 
+
+Saddle points            | 
+:-------------------------:
+![saddle_point](img/saddle_point.png)
 ### Gradient descent with momentum 
 - It cares about what previous gradients were: 
     $$m \leftarrow \beta m + \eta\nabla_{\theta}J(\theta)$$
@@ -169,10 +172,11 @@ Some math knowledge needed about Linear algebra, Probability, Optimization, Disc
     $$z_i = w_i^Tx$$
     $$a_i = \frac{e^{z_i}}{\sum^{C}_{j=1} e^{z_j}}$$
 
-![softmax](img/softmax_nn.png)
-
     - more stable version of softmax to prevent overflow when one of $z_i$ becomes to large.
     $$a_i = \frac{e^{z_i-max(z_i)}}{\sum^{C}_{j=1} e^{z_j-max(z_i)}}$$
+
+![softmax](img/softmax_nn.png)
+
 - **Relu** : 
     $$\sigma(x) = \frac{x+|x|}{2} = max(x, 0)$$
 > **_Question_** : What are the advantages of _ReLU_ over _sigmoid_ function in deep neural networks?
@@ -184,7 +188,13 @@ Some math knowledge needed about Linear algebra, Probability, Optimization, Disc
 - **Leaky Relu** :
 
     - It is a type of activation function based on a ReLU, but it has a small slope for negative values instead of a flat slope. The slope coefficient is determined before training, i.e. it is not learnt during training. 
-    ![leaky](img/leaky_relu.png)
+
+    Leaky ReLU            | 
+    :-------------------------:
+    <img src="img/leaky_relu.png" width="200">
+
+
+
 > **_Question_** : why _Leaky ReLU_ over _ReLU_?
 >    - ReLU can suffer from the “dying ReLU” problem, where a neuron with a negative bias may never activate, resulting in a “dead” neuron. To avoid this, variants of ReLU have been proposed, such as leaky ReLU, exponential ReLU, and others
 ## Loss function
