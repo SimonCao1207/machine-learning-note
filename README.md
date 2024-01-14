@@ -77,7 +77,9 @@ $$L(w) = \frac{1}{2}\sum_{i=1}^N(y_i - \bar{x_i}w)^2 =\frac{1}{2}\ \| y-\bar{X}w
 - a process of modeling the probability of a discrete outcome given an input variable.  
 $$f(x) = \theta(w^Tx)$$
 where $\theta$ is [activation function](#activation-function) that outputs a number between [0,1].
+
 ![img](img/logistic_regression.png)
+
 - For training set $X = [x_1, x_2, ..., x_N] \in R^{d \times N}$ and $y=[y_1, y_2, y_3, ..., y_N]$, the objective is to find $w$ for $P(y|X;w)$ to maximize
 
 - This is maximum likelihood estimation problem with $P(y|X;w)$ as a likelihood function: 
@@ -139,7 +141,9 @@ $$\theta = \theta - \eta\nabla_{\theta}J(\theta)$$
     - stop when the norm of the gradient is below some threshold
     $$\nabla_{\theta}J(w) < \epsilon$$
     - stop when the improvement drops below a threshold $\rightarrow$ might stuck in "_saddle points_"
+
     ![saddle_point](img/saddle_point.png)
+    
 ### Gradient descent with momentum 
 - It cares about what previous gradients were: 
     $$m \leftarrow \beta m + \eta\nabla_{\theta}J(\theta)$$
