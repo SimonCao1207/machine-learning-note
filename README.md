@@ -87,7 +87,7 @@ $$w=\underset{w}{argmax}(P(y|X;w))$$
 - Let $z_i=\theta(w^Tx_i)$ then:
 $$P(y_i|x_i;w) = z_i^{y_i}(1-z_i)^{1-y_i}$$
 
-- Loss function (build from likelihood function): 
+- BCELoss function (build from likelihood function): 
 $$J(w) = -log(P(y|X;w))$$
 $$=-\sum_{i=1}^N(y_ilog(z_i)+(1-y_i)log(1-z_i))$$
 - Derivative with regards to $w$: 
@@ -163,7 +163,20 @@ Some math knowledge needed about Linear algebra, Probability, Optimization, Disc
     ![softmax](img/softmax_nn.png)
     - more stable version of softmax to prevent overflow when one of $z_i$ becomes to large.
     $$a_i = \frac{e^{z_i-max(z_i)}}{\sum^{C}_{j=1} e^{z_j-max(z_i)}}$$
+- **Relu** : 
+    $$\sigma(x) = \frac{x+|x|}{2} = max(x, 0)$$
+> **_Question_** : What are the advantages of _ReLU_ over _sigmoid_ function in deep neural networks?
+>    - Two additional major benefits of ReLUs are sparsity and a reduced likelihood of vanishing gradient.
+>    - When $x>0$, the gradient has a constant value. In contrast, the gradient of sigmoids becomes increasingly small as the absolute value of $x$ increases.
+>    - The constant gradient of ReLUs results in faster learning.
+>    - Sparsity arises when $x \leq 0$. Sigmoids on the other hand are always likely to generate some non-zero value resulting in dense representations.
 
+- **Leaky Relu** :
+
+    - It is a type of activation function based on a ReLU, but it has a small slope for negative values instead of a flat slope. The slope coefficient is determined before training, i.e. it is not learnt during training. 
+    ![leaky](img/leaky_relu.png)
+> **_Question_** : why _Leaky ReLU_ over _ReLU_?
+>    - ReLU can suffer from the “dying ReLU” problem, where a neuron with a negative bias may never activate, resulting in a “dead” neuron. To avoid this, variants of ReLU have been proposed, such as leaky ReLU, exponential ReLU, and others
 ## Loss function
 - Cross entropy:
     - Cross entropy between two [discrete probability distributions](https://en.wikipedia.org/wiki/Probability_distribution#Discrete_probability_distribution) $p, q$ :
