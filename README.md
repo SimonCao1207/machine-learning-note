@@ -38,7 +38,7 @@
     - k-medians 
     - Expectation maximization (EM)
 - **Dimensionality reduction algorithms:** 
-    - Principle component analysis (PCA)
+    - [Principal component analysis](#principal-component-analysis) (PCA)
     - Linear discriminant analysis (LDA)
 - **Ensemble algorithm:**
     - Boosting 
@@ -154,8 +154,33 @@ Saddle points            |
     - to simulate some sort of friction mechanism and prevent the momentum from growing too large, the algorithm introduces a new hyperparameter $\beta$, called the momentum, which must be set between 0 (high friction) and 1(no friction). A typical momentum value is 0.9.
     $$\theta \leftarrow \theta - m$$
 
+## Principal Component Analysis (PCA)
+- A dimensionality reduction algorithm : with input is $x\in R^D$ and the output is $z \in R^{K}$ with $K < D$
+
+## Transformer
+
+<img src="img/transformer.png" width="300">
+
+### Attention
+
+<img src="img/attention.png" width="400">
+
+### Positional encoding
 # Math
 Some math knowledge needed about Linear algebra, Probability, Optimization, Discrete math, ... necessary for understanding of machine learning.
+
+## Linear algebra
+### Singular value decomposition (SVD) 
+
+## Probability theory   
+### Probability distribution
+#### Binomal distribution
+#### Bernoulli Distribution
+#### Uniform Distribution
+#### Normal or Gaussian Distribution
+#### Exponential Distribution
+#### Poisson Distribution
+### KL-divergence
 
 ## Norm
 
@@ -194,24 +219,12 @@ Leaky ReLU            |
 :-------------------------:
 <img src="img/leaky_relu.png" width="200">
 
-
-
 > **_Question_** : why _Leaky ReLU_ over _ReLU_?
 >    - ReLU can suffer from the “dying ReLU” problem, where a neuron with a negative bias may never activate, resulting in a “dead” neuron. To avoid this, variants of ReLU have been proposed, such as leaky ReLU, exponential ReLU, and others
 ## Loss function
 - Cross entropy:
     - Cross entropy between two [discrete probability distributions](https://en.wikipedia.org/wiki/Probability_distribution#Discrete_probability_distribution) $p, q$ :
         $$H(p,q) = -\sum_{i=1}^{C} p_ilog(q_i)$$
-## Probability theory   
-### Probability distribution
-#### Binomal distribution
-#### Bernoulli Distribution
-#### Uniform Distribution
-#### Normal or Gaussian Distribution
-#### Exponential Distribution
-#### Poisson Distribution
-
-### KL-divergence
 
 # GPU
 - read this [timdettmers's blog](https://timdettmers.com/) 
