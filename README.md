@@ -255,6 +255,8 @@ anchor.
     - measures the ability of the model to correctly identify all relevant instances
 - F1-score = 2 * (Precision * Recall) / (Precision + Recall)
         = $\frac{2TP}{2TP+FP+FN}$
+### L1-distance 
+$$d_1(I_1,I_2) = \sum_p|I_1^p - I_2^p|$$
 
 
 # GPU
