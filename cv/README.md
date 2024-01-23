@@ -1,5 +1,29 @@
 # Deep learning for computer vision
 
+## Convolution Neural network (CNN)
+
+<img src="../img/cnn.png" width="400">
+
+### Pooling layer
+- Common types: Max Pooling, Average Pooling
+> **_Question_** : Why pooling layer is needed ? 
+> - Reduce the size (spatial dimensions) of feature map
+> - Increase receptive field : allowing them to capture more global features. 
+> - Creating a level of invariance to small translations
+### Receptive Field
+- The input size of a kernel (prev layer or original input)
+- Small RF misses important info, big RF cannot capture locality (overfit).
+### Stride
+- How many pixels/features to move to get the next receptive field $\rightarrow$ dimension reduction.
+### Padding
+- Zero padding
+- Valid padding
+- Same padding 
+- Formula:  $$\frac{W-F+2P}{S}+1$$
+    - Input volume size ($W$)
+    - The receptive field size of the Conv Layer neurons ($F$)
+    - The stride with which they are applied ($S$), - The amount of zero padding used ($P$) on the border. 
+
 ## Generative Adversarial Networks (Simple GAN)
 [paper](https://arxiv.org/abs/1406.2661)
 - simultaneously train two models: a generative model G that captures the data distribution, and a discriminative model D that estimates the probability that a sample came from the training data rather than G
