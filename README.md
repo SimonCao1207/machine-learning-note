@@ -222,9 +222,40 @@ Leaky ReLU            |
 > **_Question_** : why _Leaky ReLU_ over _ReLU_?
 >    - ReLU can suffer from the “dying ReLU” problem, where a neuron with a negative bias may never activate, resulting in a “dead” neuron. To avoid this, variants of ReLU have been proposed, such as leaky ReLU, exponential ReLU, and others
 ## Loss function
-- Cross entropy:
-    - Cross entropy between two [discrete probability distributions](https://en.wikipedia.org/wiki/Probability_distribution#Discrete_probability_distribution) $p, q$ :
-        $$H(p,q) = -\sum_{i=1}^{C} p_ilog(q_i)$$
+### Cross entropy:
+- Cross entropy between two [discrete probability distributions](https://en.wikipedia.org/wiki/Probability_distribution#Discrete_probability_distribution) $p, q$ :
+    $$H(p,q) = -\sum_{i=1}^{C} p_ilog(q_i)$$
+### Triplet loss: 
+- Teach model how to recognize the similarity or difference between items.
+- It uses groups of three items (called triplets) : which consist of an _anchor item_, a _similar item_ (positive), and a _dissimilar item_ (negative). 
+- The goal is to make the model understand that the anchor is closer to the positive than the negative item
+- This scenario uses triplet loss to learn embeddings for every face. Faces from the same individual should be close together again and form well-separated clusters in the embedding space.
+$$L(A, P, N) = max(||f(A)-f(P)||^2 - ||f(A)-f(N)||^2 + \alpha, 0)$$
+where $f$ is the neural network, anchor input A, positive input P and negative input N; $\alpha$ is a margin threshold between positive and negative pairs.
+- To produce triplets as input for each batch, there are two different approaches:
+    - Offline triplet mining: Produce triplets offline, for example, at the beginning of each epoch.
+    - Online triplet mining: Compute useful triplets on the fly on each batch of inputs.
+- For online triplet mining, there are two strategies to calculate triplet loss on each batch:
+    - Batch all: select all valid triplets and calculate the average triplet loss of the hard and semi-hard
+triplets.
+    - Batch hard: for each image, only select the positive farthest away and the negative nearest to the
+anchor.  
+
+## Metric
+### F1-score
+- metric used to evaluate the performance of a classification algorithm, (ussually binary)
+- Notation:  
+    - TP : true positives
+    - FP : false positives
+    - FN : false negatives 
+    - FP : false negatives
+- Precision = $\frac{TP}{TP + FP}$
+    - measures the accuracy of the positive predictions made by the model
+- Recall = $\frac{TP}{TP + FN}$
+    - measures the ability of the model to correctly identify all relevant instances
+- F1-score = 2 * (Precision * Recall) / (Precision + Recall)
+        = $\frac{2TP}{2TP+FP+FN}$
+
 
 # GPU
 - read this [timdettmers's blog](https://timdettmers.com/) 
