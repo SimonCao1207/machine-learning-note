@@ -48,3 +48,24 @@
 
 ## Diffusion model
 [blog post](https://lilianweng.github.io/posts/2021-07-11-diffusion-models/)
+
+# Graphics
+## Voxel
+- A volume representation is a specific kind of implicit representation that uses a regular
+3D grid of discrete values called _voxels_
+
+## Point cloud
+- Point cloud is a discrete set of data points in space 
+
+## Point-set registration
+
+<img src="../img/point_reg.png" width="400">
+
+- process of finding a spatial transformation (scaling, rotation, translation, ...) that aligns two point clouds. 
+
+## Iterative closest point (ICP)
+- algorithm employed to minimize difference between two point clouds.
+- ICP is often used to reconstruct 2D or 3D surfaces from different scans, to localize robots and achieve optimal path planning
+
+## PointNet ([paper](https://arxiv.org/pdf/1612.00593.pdf))
+TODO
