@@ -170,7 +170,38 @@ Saddle points            |
 Some math knowledge needed about Linear algebra, Probability, Optimization, Discrete math, ... necessary for understanding of machine learning.
 
 ## Linear algebra
+### Singular vector
+[reference](https://www.cs.cmu.edu/~venkatg/teaching/CStheory-infoage/book-chapter-4.pdf)
+- $A \in R^{n \times d}$ : n points in d-dimentional space 
+- Consider the best fit line through the origin. Let $v$ be a unit vector along this line.
+
+<img src="img/figure1.png" width="400">
+
+- Length of projection of $a_i$ (the i-th row of $A$, onto $v$) is $|a_i.v|$
+    - $\rightarrow |Av|^2$ is sum of length squared of the projections 
+    - The best fit line is the one maximizing $|Av|^2$ and hence minimizing the sum of the squared
+distances of the points to the line
+- Define, first singular vector $v_1 = \underset{|v|=1}{argmax} |Av|$, best fit line through the origin
+    - $\sigma_1(A) = |Av_1|$ is first singular value of $A$ 
+- Define, second singular vector $v_2 = \underset{v \perp v_1; |v|=1}{argmax} |Av|$, best fit line through the origin perpendicular to $v_1$
+   - $\sigma_2(A) = |Av_2|$ is second singular value of $A$ 
+- , and so on....
+ 
 ### Singular value decomposition (SVD) 
+[reference](https://www.cs.cmu.edu/~venkatg/teaching/CStheory-infoage/book-chapter-4.pdf)
+
+<img src="img/svd.png" width="400">
+
+- Notation: 
+    - $A \in R^{n \times d}$
+    - $U \in R^{n \times r}$ 
+    - $D \in R^{r \times r}$ rectangle diagonal matrix
+    - $V \in R^{r \times d}$ : right singular
+vectors 
+$$SVD(A) = U D V^T$$
+- $U,V$ are [orthogonal](https://en.wikipedia.org/wiki/Orthogonal_matrix) 
+- from the singular value decomposition of A, we
+can get the matrix B of rank k which best approximates A
 
 ## Probability theory   
 ### Probability distribution

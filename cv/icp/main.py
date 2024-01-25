@@ -23,7 +23,13 @@ def best_fit_transform(src, dst):
         t : mx1 translation matrix
     """ 
     assert  src.shape == dst.shape
+    # Find the centroids of both dataset
+    src_centroid = np.mean(src, axis=1)
+    dst_centroid = np.mean(dst, axis=1)
 
+    # Bring both datasets to the origin
+    src -= src_centroid[np.newaxis, :]
+    dst -= dst_centroid[np.newaxis, :]
     pass 
 
 mesh_dst_bunny = os.path.join(DATA_PATH, "bun000_v2.ply")
@@ -76,8 +82,8 @@ for i in range(max_iterations):
     
     angle_thres = 20 
     mask_pts = (angels < angle_thres)
-    matched_src_pts = matched_src_pts[mask_pts, :]
-    matched_dst_pts = matched_dst_pts[mask_pts, :]
+    matched_src_pts = matched_src_pts[:, mask_pts]
+    matched_dst_pts = matched_dst_pts[:, mask_pts]
 
     # compute the transformation 
     T, _, _ = best_fit_transform(matched_src_pts, matched_dst_pts) 
