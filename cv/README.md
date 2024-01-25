@@ -64,8 +64,7 @@
 - process of finding a spatial transformation (scaling, rotation, translation, ...) that aligns two point clouds. 
 
 ## Iterative closest point (ICP)
-- algorithm employed to minimize difference between two point clouds.
-- ICP is often used to reconstruct 2D or 3D surfaces from different scans, to localize robots and achieve optimal path planning
+- see implmentation [here](./icp/)
 
 ## PointNet ([paper](https://arxiv.org/pdf/1612.00593.pdf))
 TODO
