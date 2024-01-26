@@ -49,7 +49,7 @@ optimizer = torch.optim.Adam(pointnet.parameters(), lr=lr)
 for epoch in range(epochs):
     pointnet.train()
     running_loss = 0.0 
-    for i, data in tqdm(enumerate(train_loader)):
+    for i, data in enumerate(tqdm(train_loader)):
         inputs, labels = data["pointcloud"].to(device), data["category"].to(device)
         optimizer.zero_grad()
         output, m3x3, m64x64 = pointnet(inputs.transpose(1,2))
@@ -57,7 +57,7 @@ for epoch in range(epochs):
         loss.backward()
         optimizer.step()
         running_loss += loss.item()
-        if i%10 == 0 : 
+        if i%10 == 9 : 
             tqdm.write('[Epoch: %d, Batch: %4d / %4d], loss: %.3f' %
                         (epoch + 1, i + 1, len(train_loader), running_loss / 10))
             running_loss = 0.0
