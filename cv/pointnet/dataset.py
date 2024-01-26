@@ -1,7 +1,7 @@
 import transform as tf
 from torchvision import transforms
 from pathlib import Path
-from torch.utils.data import DataLoader, Dataset
+from torch.utils.data import Dataset
 import os
 
 FILE_PATH = os.path.dirname(os.path.abspath(__file__))

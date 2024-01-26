@@ -1,4 +1,9 @@
 
-## PointNet ([paper](https://arxiv.org/pdf/1612.00593.pdf))
+# PointNet 
+- Implementation of pointnet : ([paper](https://arxiv.org/pdf/1612.00593.pdf))
 
-implementation of pointnet
+## Usage
+- Download dataset
+```
+    bash download.sh
+```
