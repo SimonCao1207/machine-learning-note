@@ -27,7 +27,7 @@ class ModelNetDataset(Dataset):
                 if f.endswith(".off"):
                     sample = {
                         "path" : data_dir / f,
-                        "category" : cls
+                        "category" : idx 
                     }
                     self.files.append(sample)
 
@@ -54,7 +54,14 @@ class ModelNetDataset(Dataset):
 
 
 if __name__ == "__main__":
-    d = ModelNetDataset(MODELNET10_PATH)
+    custom_transform = transforms.Compose([
+        tf.PointSampler(1024),
+        tf.Normalize(),
+        tf.RandRotation_z(),
+        tf.RandomNoise(),
+        tf.ToTensor()
+    ])
+    d = ModelNetDataset(MODELNET10_PATH, transform=custom_transform)
     pc = d[0]["pointcloud"]
     print(pc.shape)
 
