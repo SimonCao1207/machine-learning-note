@@ -53,18 +53,42 @@
 ## Voxel
 - A volume representation is a specific kind of implicit representation that uses a regular
 3D grid of discrete values called _voxels_
+- Voxelization [point cloud](#point-cloud): converting the unstructured point data into a regular 3D grid of voxels
+    - define voxel grids parameters : voxel size, dimensions of the grid in each axis
+    - create an empty voxel grid
+    - assign points to voxels
+    - Voxelization Algorithm: 
+        - Iterate through the points in the point cloud and distribute them into the voxel grid. 
+        - There are different algorithms for this process, and one common approach is to use a simple rounding or floor operation to find the voxel indices for each point. For example:
+        ```
+        voxel_x = int((point_x - grid_origin_x) / voxel_size)
+        voxel_y = int((point_y - grid_origin_y) / voxel_size)
+        voxel_z = int((point_z - grid_origin_z) / voxel_size)
+        ```
+    - Handle Multiple Points in a Voxel : 
+        - Common approaches include storing additional information (e.g., color or intensity) for each point in the voxel or using a simpler aggregation method like averaging. 
 
 ## Point cloud
-- Point cloud is a discrete set of data points in space 
+- Point cloud is a discrete set of data points in space, each point has coordinates, and optionally, color, intensity, or normal information. 
+> _**Question**_ : What is the difference between point cloud and voxel ? 
+> - A 3D raster is made of voxels. It divides 3-space into constant-sized little cubes. Each of these cubes has a value.
+> - A point cloud is often derived by sampling. Each point represents an observation. Sometimes, a point cloud is turned into a surface by fitting triangles to the points in the form of an STL file
+> - Pixels and voxels are rendering techniques. A point cloud is a sampling technique.
+> - A point cloud is just a collection of points, while voxels - "3D pixels" - define location and a cube area. They seem to be pretty equivalent mathematically.
+
+> _**Question**_ : What is the limitation of point cloud representation ?
+> - Storage, processing, display requirements.
+> - Lack of connectivity and topology information.
+> - Difficulty in editing and transforming the data. Algorithms that operate directly on point clouds may require more time and resources compared to other representations, particularly for large-scale datasets.
+
+> _**Question**_ : How to render 3D point cloud or shapes into 2D images ? 
+> I don't know
 
 ## Point-set registration
 
-<img src="../img/point_reg.png" width="400">
+<img src="../img/point_reg.png" width="500">
 
 - process of finding a spatial transformation (scaling, rotation, translation, ...) that aligns two point clouds. 
 
 ## Iterative closest point (ICP)
 - see implmentation [here](./icp/)
-
-## PointNet ([paper](https://arxiv.org/pdf/1612.00593.pdf))
-TODO
