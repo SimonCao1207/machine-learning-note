@@ -1,2 +1,4 @@
 cv/data
 cv/gan/images
+cv/pointnet/data
+cv/pointnet/__pycache__
