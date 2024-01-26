@@ -71,5 +71,5 @@ for epoch in range(epochs):
             pred = torch.argmax(output, axis=1)
             correct += (pred == labels).sum().item() 
             total += labels.shape[0]
-        acc = round(2, 100*(correct / labels))
-        tqdm.print(f"valid acc: {acc}")
+        acc = 100*(correct / labels)
+        tqdm.print(f"Valid acc: {round(acc, 2)}")
