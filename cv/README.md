@@ -1,6 +1,7 @@
 # Deep learning for computer vision
 
 ## Convolution Neural network (CNN)
+[reference](https://cs231n.github.io/convolutional-networks/)
 
 <img src="../img/cnn.png" width="400">
 
