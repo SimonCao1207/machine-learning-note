@@ -5,5 +5,5 @@
 ## Usage
 - Download dataset
 ```
-    bash download.sh
+    bash script/download.sh
 ```
