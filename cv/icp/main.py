@@ -1,6 +1,6 @@
 import open3d as o3d
 import numpy as np
-from sklearn.neighbors import NearestNeighbors 
+from sklearn.neighbors import NearestNeighbors
 import trimesh
 import os
 
@@ -9,15 +9,15 @@ DATA_PATH = os.path.join(FILE_PATH, "data/bunny_v2")
 if not os.path.exists(DATA_PATH):
     assert("Cannot find path to data")
 
-def toO3d(tm, color):                                                                                                                                        
-    """put trimesh object into open3d object"""                                                                                                              
-    mesh_o3d = o3d.geometry.TriangleMesh()                                                                                                                   
-    mesh_o3d.vertices = o3d.utility.Vector3dVector(tm.vertices)                                                                                              
-    mesh_o3d.triangles = o3d.utility.Vector3iVector(tm.faces)                                                                                                
-    mesh_o3d.compute_vertex_normals()                                                                                                                        
-    vex_color_rgb = np.array(color)                                                                                                                          
-    vex_color_rgb = np.tile(vex_color_rgb, (tm.vertices.shape[0], 1))                                                                                        
-    mesh_o3d.vertex_colors = o3d.utility.Vector3dVector(vex_color_rgb)                                                                                       
+def toO3d(tm, color):
+    """put trimesh object into open3d object"""
+    mesh_o3d = o3d.geometry.TriangleMesh()
+    mesh_o3d.vertices = o3d.utility.Vector3dVector(tm.vertices)
+    mesh_o3d.triangles = o3d.utility.Vector3iVector(tm.faces)
+    mesh_o3d.compute_vertex_normals()
+    vex_color_rgb = np.array(color)
+    vex_color_rgb = np.tile(vex_color_rgb, (tm.vertices.shape[0], 1))
+    mesh_o3d.vertex_colors = o3d.utility.Vector3dVector(vex_color_rgb)
     return mesh_o3d
 
 def nearest_neighbors(src, dst):
@@ -34,7 +34,7 @@ def icp(src_tm, dst_tm, max_iterations=10, tolerance=None):
     src_pts_normal = np.array(src_tm.vertex_normals)
 
     # Subsampling
-    sample_rate = 1
+    sample_rate = 0.9
     src_ids = np.random.uniform(0, 1, size=src_pts.shape[0])
     A = src_pts[src_ids < sample_rate, :]
     A_normals = src_pts_normal[src_ids < sample_rate, :]
@@ -51,18 +51,18 @@ def icp(src_tm, dst_tm, max_iterations=10, tolerance=None):
     dst[:m, :] = np.copy(B.T)
 
     Mean_error = []
-    prev_error = 0 
+    prev_error = 0
     for i in range(max_iterations):
         # find the nearest neighbors between the current source and destination points.
         distances, indices = nearest_neighbors(src[:m, :].T, dst[:m, :].T)
 
         # match each point of source-set to closest point of destination set
-        matched_src_pts = src[:m, :].T 
+        matched_src_pts = src[:m, :].T
         matched_dst_pts = dst[:m, indices].T
-        
+
         # compute angle between 2 matched vertex's normals
         matched_src_pts_normals = A_normals.copy()
-        matched_dst_pts_normals = B_normals[indices, :] 
+        matched_dst_pts_normals = B_normals[indices, :]
         num_pts = matched_src_pts_normals.shape[0]
         angels = np.zeros(num_pts)
         for k in range(num_pts):
@@ -70,13 +70,13 @@ def icp(src_tm, dst_tm, max_iterations=10, tolerance=None):
             v2 = matched_dst_pts_normals[k, :]
             cos_sim = np.dot(v1, v2) / (np.linalg.norm(v1) * np.linalg.norm(v2))
             angels[k] = np.arccos(cos_sim) / np.pi*180
-        angle_thres = 20 
+        angle_thres = 20
         mask_pts = (angels < angle_thres)
         matched_src_pts = matched_src_pts[mask_pts, :]
         matched_dst_pts = matched_dst_pts[mask_pts, :]
 
-        # compute the transformation 
-        T, _, _ = best_fit_transform(matched_src_pts, matched_dst_pts) 
+        # compute the transformation
+        T, _, _ = best_fit_transform(matched_src_pts, matched_dst_pts)
 
         # update current src
         src = np.dot(T, src)
@@ -99,12 +99,12 @@ def icp(src_tm, dst_tm, max_iterations=10, tolerance=None):
 
 def best_fit_transform(src, dst):
     """
-        Calculate the least square best-fit transform that maps src to dst in m spatial dimensions 
-        Returns: 
+        Calculate the least square best-fit transform that maps src to dst in m spatial dimensions
+        Returns:
         T : (m+1)x(m+1) homogenous transformation matrix that map src to dst
         R : mxm rotation matrix
         t : mx1 translation matrix
-    """ 
+    """
     assert  src.shape == dst.shape
     m = src.shape[1]
     # Find the centroids of both dataset
@@ -114,11 +114,11 @@ def best_fit_transform(src, dst):
     # Bring both datasets to the origin
     src -= src_centroid[np.newaxis, :]
     dst -= dst_centroid[np.newaxis, :]
-    
+
     # Covariance matrix H
     H = src.T @ dst
-    
-    # Rotation matrix 
+
+    # Rotation matrix
     U, S, Vh = np.linalg.svd(H, full_matrices=True)
     R = np.dot(Vh.T, U.T)
 
@@ -138,11 +138,11 @@ if __name__ == "__main__":
     src_tm = trimesh.load(mesh_src_bunny)
     T, Mean_error = icp(src_tm, dst_tm, max_iterations=10, tolerance=None)
     res_tm = src_tm.copy()
-    res_tm.apply_transform(T)    
-    dst_mesh_o3d = toO3d(dst_tm, color=(0.5, 0, 0))                                                                                          
-    src_mesh_o3d = toO3d(src_tm, color=(0, 0, 0.5))                                                                                          
-    res_mesh_o3d = toO3d(res_tm, color=(0, 0, 0.5))                                                                                          
-    o3d.visualization.draw_geometries([dst_mesh_o3d, src_mesh_o3d])                                                                                      
+    res_tm.apply_transform(T)
+    dst_mesh_o3d = toO3d(dst_tm, color=(0.5, 0, 0))
+    src_mesh_o3d = toO3d(src_tm, color=(0, 0, 0.5))
+    res_mesh_o3d = toO3d(res_tm, color=(0, 0, 0.5))
+    o3d.visualization.draw_geometries([dst_mesh_o3d, src_mesh_o3d])
     o3d.visualization.draw_geometries([dst_mesh_o3d, res_mesh_o3d])
 
 
