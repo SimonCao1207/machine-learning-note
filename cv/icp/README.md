@@ -4,6 +4,8 @@
 
 - ICP is often used to reconstruct 2D or 3D surfaces from different scans, to localize robots and achieve optimal path planning
 
+- Disadvantage: the algorithm can converage to local optima.
+
 - Dataset used is [Stanford's bunny](https://graphics.stanford.edu/data/3Dscanrep/)
 
 ## Runing
