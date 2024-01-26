@@ -1,4 +1,5 @@
-# Machine learning note
+# Machine learning note 
+(on updating ...)
 
 ## Group based on learning style
 
@@ -158,6 +159,7 @@ Saddle points            |
 - A dimensionality reduction algorithm : with input is $x\in R^D$ and the output is $z \in R^{K}$ with $K < D$
 
 ## Transformer
+[reference](https://lilianweng.github.io/posts/2020-04-07-the-transformer-family/)
 
 <img src="img/transformer.png" width="300">
 
