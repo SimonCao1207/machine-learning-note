@@ -1,4 +1,5 @@
-import torchvision.transforms as tf
+import transform as tf
+from torchvision import transforms
 from pathlib import Path
 from torch.utils.data import DataLoader, Dataset
 import os
@@ -14,9 +15,11 @@ class ModelNetDataset(Dataset):
         folders = [dir for dir in sorted(os.listdir(root)) if os.path.isdir(root /dir)]
         self.classes = {f:i for i,f in enumerate(folders)}
         self.files= []
-        default_transform = tf.Compose(
+        default_transform = transforms.Compose([
+            tf.PointSampler(1024),
+            tf.Normalize(),
             tf.ToTensor()
-        )
+        ])
         self.transforms  = transform if transform != None else default_transform
         for cls, idx  in self.classes.items():
             data_dir = root / Path(cls) / split
@@ -27,7 +30,6 @@ class ModelNetDataset(Dataset):
                         "category" : cls
                     }
                     self.files.append(sample)
-        print(self.files[0])
 
     def __len__(self):
         return len(self.files)
@@ -46,10 +48,13 @@ class ModelNetDataset(Dataset):
             verts, faces = self._read_data(f)
             pointcloud = self.transforms((verts, faces))
         return {
-            "pointcloud" : pnt_cloud,
+            "pointcloud" : pointcloud,
             "category" : category
         }
 
 
-d = ModelNetDataset(MODELNET10_PATH)
-print(d[0])
+if __name__ == "__main__":
+    d = ModelNetDataset(MODELNET10_PATH)
+    pc = d[0]["pointcloud"]
+    print(pc.shape)
+
