@@ -50,8 +50,12 @@
 ## Diffusion model
 [blog post](https://lilianweng.github.io/posts/2021-07-11-diffusion-models/)
 
-# Graphics
-## Voxel
+# 3D Graphics
+### 3D representations
+
+<img src="../img/3D.png" width="500">
+
+### I. Voxel
 - A volume representation is a specific kind of implicit representation that uses a regular
 3D grid of discrete values called _voxels_
 - Voxelization [point cloud](#point-cloud): converting the unstructured point data into a regular 3D grid of voxels
@@ -69,8 +73,11 @@
     - Handle Multiple Points in a Voxel : 
         - Common approaches include storing additional information (e.g., color or intensity) for each point in the voxel or using a simpler aggregation method like averaging. 
 
-## Point cloud
+### II. Point cloud
 - Point cloud is a discrete set of data points in space, each point has coordinates, and optionally, color, intensity, or normal information. 
+- Point cloud is close to raw censor data 
+- Point cloud is canonical : meaning that we can easily convert other 3D representations to point cloud or convert point cloud to others 
+
 > _**Question**_ : What is the difference between point cloud and voxel ? 
 > - A 3D raster is made of voxels. It divides 3-space into constant-sized little cubes. Each of these cubes has a value.
 > - A point cloud is often derived by sampling. Each point represents an observation. Sometimes, a point cloud is turned into a surface by fitting triangles to the points in the form of an STL file
@@ -85,6 +92,11 @@
 > _**Question**_ : How to render 3D point cloud or shapes into 2D images ? 
 > I don't know
 
+### IV. Mesh
+
+### V. Projected View (RGB(D))
+
+
 ## Point-set registration
 
 <img src="../img/point_reg.png" width="500">
@@ -94,5 +106,8 @@
 ## Iterative closest point (ICP)
 - see implmentation [here](./icp/)
 
-## PointNet (paper) 
+## 3D Deep learning
+### PointNet (paper) 
 - see implementation [here](./pointnet/)
+- An end-to-end learning for scattered, unordered point data. 
+- Unified framework for various task : Object classifcation, Object part segmentation,  Semantic sence parsing, ...
