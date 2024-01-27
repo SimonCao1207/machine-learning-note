@@ -72,7 +72,7 @@ for epoch in range(epochs):
             correct += (pred == labels).sum().item() 
             total += labels.shape[0]
         acc = 100*(correct / labels)
-        tqdm.print(f"Valid acc: {round(acc, 2)}")
+        tqdm.write(f"Valid acc: {round(acc, 2)}")
 
         checkpoint = Path(save_model_path) / f'save_{epoch}.pthe'
         torch.save(pointnet.state_dict(), checkpoint)
