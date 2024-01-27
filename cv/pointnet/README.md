@@ -7,3 +7,10 @@
 ```
     bash script/download.sh
 ```
+- Train the model
+```
+    python main.py
+```
+
+## Note
+- 

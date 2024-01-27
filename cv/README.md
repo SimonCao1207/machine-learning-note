@@ -93,3 +93,6 @@
 
 ## Iterative closest point (ICP)
 - see implmentation [here](./icp/)
+
+## PointNet (paper) 
+- see implementation [here](./pointnet/)

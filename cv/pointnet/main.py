@@ -50,7 +50,7 @@ optimizer = torch.optim.Adam(pointnet.parameters(), lr=lr)
 
 for epoch in range(epochs):
     pointnet.train()
-    running_loss = 0.0 
+    running_loss = 0.0
     for i, data in enumerate(tqdm(train_loader)):
         inputs, labels = data["pointcloud"].to(device), data["category"].to(device)
         optimizer.zero_grad()
@@ -59,7 +59,7 @@ for epoch in range(epochs):
         loss.backward()
         optimizer.step()
         running_loss += loss.item()
-        if i%10 == 9 : 
+        if i%10 == 9 :
             tqdm.write('[Epoch: %d, Batch: %4d / %4d], loss: %.3f' %
                         (epoch + 1, i + 1, len(train_loader), running_loss / 10))
             running_loss = 0.0
@@ -71,9 +71,9 @@ for epoch in range(epochs):
             inputs, labels = data["pointcloud"].to(device), data["category"].to(device)
             output, m3x3, m64x64 = pointnet(inputs.transpose(1,2))
             pred = torch.argmax(output, axis=1)
-            correct += (pred == labels).sum().item() 
+            correct += (pred == labels).sum().item()
             total += labels.shape[0]
-        acc = 100*(correct / total) 
+        acc = 100*(correct / total)
         tqdm.write(f"Valid acc: {round(acc, 2)}")
         checkpoint = Path(save_model_path) / f'save_{epoch}.pthe'
         torch.save(pointnet.state_dict(), checkpoint)
