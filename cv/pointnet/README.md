@@ -29,9 +29,7 @@
         - transform each point independently and identically by conv1D (into high dimensional embedding space)
         - introducing MaxPooling to aggregate point features
 
-    <p align="center">
     <img src="../../img/Tnet.png" width="300">
-    </p>
 
     -  **Invariance under transformations** : align all input set to a canonical space before feature extraction. 
         - predict an affine transformation matrix by **T-net** and directly apply this transformation to the coordinates of input points.
@@ -42,9 +40,7 @@
 - __**Question**__ : Why is PointNet is so robust to missing data ? 
     - Critical points : Input point cloud that are contributing to the PointNet global feature 
 
-    <p align="center">
     <img src="../../img/critical_points.png" width="300">
-    </p>
 
     - It is learning to use a collection of critical points to summarize the shape, thus it is very robust to missing data.
 
