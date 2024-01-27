@@ -24,12 +24,15 @@
     - **Invariance under transformations** : no affine transformation (rotation, scale, translation) nor any reordering of points should have any effect on the output of the model
     - **Interaction among points** : model needs to be able to capture local structures from nearby points, and the combinatoric interactions among local structures.
 
+<p align="center">
+<img src="../../img/Tnet.png" width="300">
+</p>
+
 - __**Question**__ : How did PointNet address the 3 properties of point clouds : 
     - **Undordered** : neural network should be a symmetric function
         - transform each point independently and identically by conv1D (into high dimensional embedding space)
         - introducing MaxPooling to aggregate point features
 
-    <img src="../../img/Tnet.png" width="300">
 
     -  **Invariance under transformations** : align all input set to a canonical space before feature extraction. 
         - predict an affine transformation matrix by **T-net** and directly apply this transformation to the coordinates of input points.
@@ -37,10 +40,11 @@
             $$L_{reg} = \|I - AA^T\|^2_F$$
     - **Interaction among points** : segmentation network requires a combination of local and global point cloud feature vector by concatenating the global feature with each of the point features.     
 
+<p align="center">
+<img src="../../img/critical_points.png" width="300">
+</p>
+
 - __**Question**__ : Why is PointNet is so robust to missing data ? 
     - Critical points : Input point cloud that are contributing to the PointNet global feature 
-
-    <img src="../../img/critical_points.png" width="300">
-
     - It is learning to use a collection of critical points to summarize the shape, thus it is very robust to missing data.
 
