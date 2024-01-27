@@ -1,55 +1,19 @@
 # Machine learning note 
 (on updating ...)
 
-## Group based on learning style
-
-- **Supervised learning**: pair of (data, label) is known
-    - Classification
-    - Regression
-- **Unsupervised learning**: 
-    - Clustering
-    - Association
-- **Semi-supervised learning**: only a portion of the data are labeled. 
-- **Reinforcement learning** : 
-
-## Algorithms group by similarity
-- **Regression algorithms:**
-    - [Linear regression](#linear-regression)
-    - [Logistic regression](#logistic-regression)
-    - Stepwise regression
-- **Classification algorithm:** 
-    - Linear classifier
-    - Support vector machine (SVM)
-    - Kernel SVM
-    - Sparse representation-based classification (SRC)
-
-- **Instance-based algorithm:**
-    - k-nearest neighbors (kNN):
-    - Learning Vector Quantization (LVQ)
-
-- **Regularization algorithm:**
-    - Ridge regression
-    - Least absolute shrinkage and selection operator (LASSO)
-    - Least-Angle Regression (LARS)
-- **Bayesian algorithm:**
-    - Naive Bayes
-    - Gaussian Naive Bayes
-- **Clustering algorithm:** 
-    - k-means clustering
-    - k-medians 
-    - Expectation maximization (EM)
-- **Dimensionality reduction algorithms:** 
-    - [Principal component analysis](#principal-component-analysis) (PCA)
-    - Linear discriminant analysis (LDA)
-- **Ensemble algorithm:**
-    - Boosting 
-    - Adaboost
-    - Random forest
-- **Deep learning algorithms:**
-    - Perceptron
-    - [Softmax regression](#softmax-regression)
-    - Multi-layer Perceptron    
-    - Back-propagation
+## Table of contents
+- [`cv`](./cv/) : contains notes related to Computer vision
+- [`nlp`](./nlp/) : contains notes related to Natural language processing
+- [`Math`](#math) : contains math concepts related to ML 
+- Core concepts of machine learning : 
+    - [`Gradient descent`](#gradient-descent)
+    - [`Linear regression`](#linear-regression)
+    - [`Logistic regression`](#logistic-regression)
+    - [`Softmax regression`](#softmax-regression)
+    - [`Principal component analysis`](#principal-component-analysis) (PCA)
+    - [`Transformer`](#transformer)
+    - [`GPU`](#gpu)
+    - _on updating_ ... 
 
 ## Linear regression
 $y$ (real value of outcome) and $\hat{y}$ (prediction value of outcome) are scalars.
@@ -143,8 +107,6 @@ $$\theta = \theta - \eta\nabla_{\theta}J(\theta)$$
     $$\nabla_{\theta}J(w) < \epsilon$$
     - stop when the improvement drops below a threshold $\rightarrow$ might stuck in "_saddle points_"
 
-
-
 Saddle points            | 
 :-------------------------:
 <img src="img/saddle_point.png" width="400">
@@ -168,6 +130,8 @@ Saddle points            |
 <img src="img/attention.png" width="400">
 
 ### Positional encoding
+
+
 # Math
 Some math knowledge needed about Linear algebra, Probability, Optimization, Discrete math, ... necessary for understanding of machine learning.
 
