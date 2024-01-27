@@ -10,6 +10,8 @@ lr = 0.001
 batch_size = 32
 epochs = 1
 save_model_path = './checkpoints'
+if not os.path.exists(save_model_path):
+    os.makedirs(save_model_path)
 
 def pointnetloss(outputs, labels, m3x3, m64x64, alpha = 0.0001):
     criterion = torch.nn.NLLLoss()
