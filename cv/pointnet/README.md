@@ -13,4 +13,6 @@
 ```
 
 ## Note
-- 
+
+<img src="../../img/pointnet.png" width="700">
+
