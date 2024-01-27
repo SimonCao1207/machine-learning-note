@@ -1,4 +1,10 @@
 # Deep learning for computer vision
+## Table of contents
+- [`CNN`](#convolution-neural-network-cnn)
+- [`GAN`](#generative-adversarial-networks-simple-gan)
+- [`Diffusion model`](#diffusion-model)
+- [`3D graphic concepts`](#3d-graphic)
+- [`3D deep learning`](#3d-deep-learning)
 
 ## Convolution Neural network (CNN)
 [reference](https://cs231n.github.io/convolutional-networks/)
@@ -50,7 +56,7 @@
 ## Diffusion model
 [blog post](https://lilianweng.github.io/posts/2021-07-11-diffusion-models/)
 
-# 3D Graphics
+## 3D Graphic
 ### 3D representations
 
 <img src="../img/3D.png" width="500">

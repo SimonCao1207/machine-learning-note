@@ -11,7 +11,6 @@
     - [`Logistic regression`](#logistic-regression)
     - [`Softmax regression`](#softmax-regression)
     - [`Principal component analysis`](#principal-component-analysis) (PCA)
-    - [`Transformer`](#transformer)
     - [`GPU`](#gpu)
     - _on updating_ ... 
 
@@ -119,17 +118,6 @@ Saddle points            |
 
 ## Principal Component Analysis (PCA)
 - A dimensionality reduction algorithm : with input is $x\in R^D$ and the output is $z \in R^{K}$ with $K < D$
-
-## Transformer
-[reference](https://lilianweng.github.io/posts/2020-04-07-the-transformer-family/)
-
-<img src="img/transformer.png" width="300">
-
-### Attention
-
-<img src="img/attention.png" width="400">
-
-### Positional encoding
 
 
 # Math
