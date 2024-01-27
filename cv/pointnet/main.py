@@ -61,6 +61,7 @@ for epoch in range(epochs):
             tqdm.write('[Epoch: %d, Batch: %4d / %4d], loss: %.3f' %
                         (epoch + 1, i + 1, len(train_loader), running_loss / 10))
             running_loss = 0.0
+        break
 
     pointnet.eval()
     correct, total = 0, 0
@@ -71,9 +72,9 @@ for epoch in range(epochs):
             pred = torch.argmax(output, axis=1)
             correct += (pred == labels).sum().item() 
             total += labels.shape[0]
-        acc = 100*(correct / labels)
+        acc = 100*(correct / len(labels))
         tqdm.write(f"Valid acc: {round(acc, 2)}")
-
+        break
         checkpoint = Path(save_model_path) / f'save_{epoch}.pthe'
         torch.save(pointnet.state_dict(), checkpoint)
         print(f"Model saved to {checkpoint}")
