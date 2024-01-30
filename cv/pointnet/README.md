@@ -48,3 +48,6 @@
     - Critical points : Input point cloud that are contributing to the PointNet global feature 
     - It is learning to use a collection of critical points to summarize the shape, thus it is very robust to missing data.
 
+- __**Question**__ : What is the limitation of PointNet ? 
+    - No local context for each point
+    - Global feature depends on absolute coordinates. Hard to generalize to unseen scence configurations.

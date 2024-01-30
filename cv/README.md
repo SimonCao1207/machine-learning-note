@@ -60,8 +60,14 @@
 ### 3D representations
 
 <img src="../img/3D.png" width="500">
+- 3D has many representations:
+    - multi-view RGB(D) images
+    - [volumetric](#voxel)
+    - polygonal mesh
+    - [point cloud](#point-cloud)
+    - primitive-based CAD models
 
-### I. Voxel
+### Voxel
 - A volume representation is a specific kind of implicit representation that uses a regular
 3D grid of discrete values called _voxels_
 - Voxelization [point cloud](#point-cloud): converting the unstructured point data into a regular 3D grid of voxels
@@ -79,9 +85,9 @@
     - Handle Multiple Points in a Voxel : 
         - Common approaches include storing additional information (e.g., color or intensity) for each point in the voxel or using a simpler aggregation method like averaging. 
 
-### II. Point cloud
+### Point cloud
 - Point cloud is a discrete set of data points in space, each point has coordinates, and optionally, color, intensity, or normal information. 
-- Point cloud is close to raw censor data 
+- Point cloud is close to raw censor data. They are sampled from surfaces. 
 - Point cloud is canonical : meaning that we can easily convert other 3D representations to point cloud or convert point cloud to others 
 
 > _**Question**_ : What is the difference between point cloud and voxel ? 
@@ -98,10 +104,6 @@
 > _**Question**_ : How to render 3D point cloud or shapes into 2D images ? 
 > I don't know
 
-### IV. Mesh
-
-### V. Projected View (RGB(D))
-
 
 ## Point-set registration
 
@@ -112,8 +114,43 @@
 ## Iterative closest point (ICP)
 - see implmentation [here](./icp/)
 
-## 3D Deep learning
-### PointNet (paper) 
-- see implementation [here](./pointnet/)
-- An end-to-end learning for scattered, unordered point data. 
-- Unified framework for various task : Object classifcation, Object part segmentation,  Semantic sence parsing, ...
+## vSLAM
+- Visual simultaneous localization and mapping (vSLAM), refers to the process of calculating the position and orientation of a camera with respect to its surroundings, while simultaneously mapping the environment.  
+- Applications for vSLAM include augmented reality, robotics, and autonomous driving. 
+
+## 3d deep learning
+- a tutorial on 3d deep learning : [link](http://3ddl.stanford.edu/)
+- [lecture's video](https://www.youtube.com/watch?v=vfl6ujyfrp4&t=858s). 
+> _**Question**_ : Can we directly apply CNN on 3D data ? 
+> - For irregular representation like point clound,  you cannot directly apply CNN 
+
+### Deep learning on point cloud
+- PointNet (paper) 
+    - see implementation [here](./pointnet/)
+    - An end-to-end learning for scattered, unordered point data. 
+    - Unified framework for various task : Object classifcation, Object part segmentation,  Semantic sence parsing, ...
+
+
+### Deep learning on multi-view representation (multiview stereo)
+
+<img src="../img/mvcn.png" width="400">
+
+- Convert irregular (3D) to regular (images), similiar to human, combine surface information from multiple views
+- Leverage pre-trained image-based CNNs
+- Traditional approach: feature + linear classifer (MVCNN work in the figure)
+- Issue: 
+    - What viewpoints to select ? Where shall we place the camera in the scene ? 
+    - What if the input is noisy and incomplete ? e.g point cloud
+    - View-based network does not process invisible points
+    - Slow to train
+    - Aggregating view representations via max-pooling may lose information. 
+- Stereo-based techniques: 
+    - require matching features across images captured from slightly different viewing angles, 
+    - use the triangulation principle to recover the 3D coordinates of the image pixels
+- Shape-from-silhouette, or shapeby-space-carving, methods: 
+    - require accurately segmented 2D silhouettes
+    - require multiple images of- the same object captured by  well-calibrated cameras.
+
+
+
+

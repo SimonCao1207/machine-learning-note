@@ -63,5 +63,3 @@ if __name__ == "__main__":
     ])
     d = ModelNetDataset(MODELNET10_PATH, transform=custom_transform)
     pc = d[0]["pointcloud"]
-    print(pc.shape)
-

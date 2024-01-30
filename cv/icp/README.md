@@ -8,6 +8,9 @@
 
 - Dataset used is [Stanford's bunny](https://graphics.stanford.edu/data/3Dscanrep/)
 
+- Reference:
+    - [Least-squares rigid motion using SVD](https://igl.ethz.ch/projects/ARAP/svd_rot.pdf) : This note summarizes the steps to computing the best-fitting rigid transformation that aligns two sets of corresponding points.
+
 ## Runing
 ```
     pip install -r requirements.txt 
