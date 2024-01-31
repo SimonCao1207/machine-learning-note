@@ -20,6 +20,10 @@
 ### Receptive Field
 - The input size of a kernel (prev layer or original input)
 - Small RF misses important info, big RF cannot capture locality (overfit).
+> _**Question**_ : Why use smaller filters ? 
+> - Stack of three 3x3 conv (stride 1) layers have the same effective receptive field as one 7x7 conv layer.
+> - But deeper, more non-linearities
+> - And fewer parameters: 3*(3^2C^2) vs 7^2C^2 
 ### Stride
 - How many pixels/features to move to get the next receptive field $\rightarrow$ dimension reduction.
 ### Padding
@@ -30,6 +34,16 @@
     - Input volume size ($W$)
     - The receptive field size of the Conv Layer neurons ($F$)
     - The stride with which they are applied ($S$), - The amount of zero padding used ($P$) on the border. 
+
+### Case study: ResNet
+- very deep networks using residual connections 
+
+<img src="../img/resnet.png" width="300">
+
+> _**Question**_ : Why residual connections (skip connections) works ? 
+> - Deeper models are harder to optmize
+> - Use network layers to fit a residual mapping instead of directly trying to fit a desired underlying mapping
+> - It is a way to solve the vanishing gradient problem. And therefore models could be built even deeper.
 
 ## Generative Adversarial Networks (Simple GAN)
 [paper](https://arxiv.org/abs/1406.2661)
