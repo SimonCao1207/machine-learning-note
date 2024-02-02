@@ -124,15 +124,17 @@
 <img src="../img/point_reg.png" width="500">
 
 - process of finding a spatial transformation (scaling, rotation, translation, ...) that aligns two point clouds. 
-
-## Iterative closest point (ICP)
-- see implmentation [here](./icp/)
+- Classical approach is Iterative closest point (ICP) : see implmentation [here](./icp/)
 
 ## vSLAM
 - Visual simultaneous localization and mapping (vSLAM), refers to the process of calculating the position and orientation of a camera with respect to its surroundings, while simultaneously mapping the environment.  
 - Applications for vSLAM include augmented reality, robotics, and autonomous driving. 
 
-## 3d deep learning
+## Structure from motion
+- Track : 3D coordinates of a reconstructed 3D point and the list of corresponding 2D coordinates in a subset of the input images.
+- SfM algorithms take as input a set of images and produce two things: the camera parameters of every image, and a set of 3D points visible in the images which are often encoded as tracks.
+
+## 3D Deep learning
 - a tutorial on 3d deep learning : [link](http://3ddl.stanford.edu/)
 - [lecture's video](https://www.youtube.com/watch?v=vfl6ujyfrp4&t=858s). 
 > _**Question**_ : Can we directly apply CNN on 3D data ? 
@@ -164,7 +166,3 @@
 - Shape-from-silhouette, or shapeby-space-carving, methods: 
     - require accurately segmented 2D silhouettes
     - require multiple images of- the same object captured by  well-calibrated cameras.
-
-
-
-
