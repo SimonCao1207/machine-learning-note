@@ -117,8 +117,22 @@ Saddle points            |
     $$\theta \leftarrow \theta - m$$
 
 ## Principal Component Analysis (PCA)
-- A dimensionality reduction algorithm : with input is $x\in R^D$ and the output is $z \in R^{K}$ with $K < D$
 
+<img src="img/pca.png" width="400">
+
+- A dimensionality reduction algorithm : with input is $x\in R^D$ and the output is $z \in R^{K}$ with $K < D$
+- Start with D-dimensional vectors, want to summarize them by projecting down into a K-dimensional subspace: 
+    - K directions, the principal components, which span the subspace. 
+
+> **_Question_** : What is principal components ? 
+> - To put all this simply, just think of principal components as new axes that provide the best angle to see and evaluate the data, so that the differences between the observations are better visible.
+> - Geometrically speaking, principal components represent the directions of the data that explain a maximal amount of variance, that is to say, the lines that capture most information of the data.
+
+- The primary goal of PCA is to identify the directions (principal components) that capture the maximum variance in the data.  
+- The kth component is the direction which maximizes variance among all directions orthogonal to the previous k-1 components.
+- Maximizing variance <=> look for the projection with the smallest average (mean-squared) distance between the original vectors and their projections on to the principal components
+
+- Resource: [high level guide](https://builtin.com/data-science/step-step-explanation-principal-component-analysis)
 
 # Math
 Some math knowledge needed about Linear algebra, Probability, Optimization, Discrete math, ... necessary for understanding of machine learning.
@@ -145,6 +159,7 @@ distances of the points to the line
 [reference](https://www.cs.cmu.edu/~venkatg/teaching/CStheory-infoage/book-chapter-4.pdf)
 
 <img src="img/svd.png" width="400">
+
 
 - Notation: 
     - $A \in R^{n \times d}$
